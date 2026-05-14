@@ -1,5 +1,6 @@
-import Button from "../components/Button";
+import { useMemo } from "react";
 import LeadingTitle from "../components/LeadingTitle";
+import NavLinkTab from "../components/NavLinkTab";
 import SectionWrapper from "../components/SectionWrapper";
 import HomePagePageLayout from "../layouts/HomePageLayout";
 import { BiHeart } from "react-icons/bi";
@@ -33,21 +34,27 @@ const patterns = [
 ];
 
 export default function HomePage() {
-  const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+  const pattern = useMemo(() => {
+    return patterns[Math.floor(Math.random() * patterns.length)];
+  }, []);
   return (
     <>
       <title>Home</title>
       <HomePagePageLayout>
-        <div className="px-12 block md:flex h-screen bg-blue-50 items-center pt-5">
+        <div className="px-6 md:px-8 lg:px-12 block md:flex h-screen bg-blue-50 items-center pt-12">
           <div className=" w-full md:w-[50%] space-y-2 py-12 ">
             <h1 className="text-wrap text-4xl tracking-wide text-blue-900 font-medium">
               Elevated Living, Curated for You.
             </h1>
-            <p className="text-wrap text-gray-600">
+            <p className="text-wrap text-gray-600 pb-5">
               Discover a sanctuary of quality products designed to bring
               serenity and sophistication to your everyday life.
             </p>
-            <Button title={"Explore Collection"} />
+            <NavLinkTab
+              title={"Explore Collection"}
+              widthStyle={"w-auto"}
+              path={"/product"}
+            />
           </div>
           <div className=" w-full md:w-[50%] h-[280px] rounded-3xl overflow-hidden ">
             <img
@@ -59,7 +66,7 @@ export default function HomePage() {
         </div>
         {/* category products  */}
         <SectionWrapper>
-          <div className="px-12 h-screen">
+          <div className="px-6 md:px-8 lg:px-12 h-screen">
             <LeadingTitle title={"Shop by Category"} />
             <p className="text-gray-600 ">
               Find Exactly what you are looking for.
@@ -75,11 +82,13 @@ export default function HomePage() {
                       <img
                         src={image}
                         alt={`image galery ${index}`}
-                        className="w-full hover:scale-[1.01] object-cover transition-all duration-300"
+                        className="w-full h-full hover:scale-[1.01] object-cover transition-all duration-300"
                       />
                       <div className="absolute bottom-1 left-0 px-3 text-white ">
                         <span className="text-sm">Feature</span>
-                        <h1 className=" text-lg font-bold">Category</h1>
+                        <h1 className=" text-base md:text-lg font-bold">
+                          Category
+                        </h1>
                       </div>
                     </div>
                   </>
@@ -90,7 +99,7 @@ export default function HomePage() {
         </SectionWrapper>
         {/* features products  */}
         <SectionWrapper>
-          <div className="px-12 space-y-5">
+          <div className="px-6 md:px-8 lg:px-12 space-y-5">
             <div className="flex justify-between items-center">
               <LeadingTitle title={"Feature Products"} />
               {/* view all buttons */}
