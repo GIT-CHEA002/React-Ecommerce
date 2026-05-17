@@ -2,7 +2,7 @@ import { BiMailSend } from "react-icons/bi";
 import Button from "../components/Button";
 export default function Footer() {
   return (
-    <footer className="px-6 md:px-8 lg:px-12 pt-6 pb-12 ">
+    <footer className=" bg-white z-50 px-6 md:px-8 lg:px-12 pt-6 pb-12 ">
       {/* join sections */}
       <section className="md:px-32 lg:px-64 text-gray-600  py-16">
         <h1 className="text-center text-blue-900 text-xl font-semibold">

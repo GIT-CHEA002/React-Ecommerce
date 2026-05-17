@@ -35,7 +35,8 @@ const patterns = [
 
 export default function HomePage() {
   const pattern = useMemo(() => {
-    return patterns[Math.floor(Math.random() * patterns.length)];
+    const index = Math.floor(Math.random() * patterns.length);
+    return patterns[index];
   }, []);
   return (
     <>
@@ -74,24 +75,22 @@ export default function HomePage() {
             <div className="grid grid-cols-3 auto-rows-[150px] gap-3 my-4">
               {images.map((image, index) => {
                 return (
-                  <>
-                    <div
-                      key={index}
-                      className={`overflow-hidden rounded-lg relative bg-blue-100 ${pattern[index]}`}
-                    >
-                      <img
-                        src={image}
-                        alt={`image galery ${index}`}
-                        className="w-full h-full hover:scale-[1.01] object-cover transition-all duration-300"
-                      />
-                      <div className="absolute bottom-1 left-0 px-3 text-white ">
-                        <span className="text-sm">Feature</span>
-                        <h1 className=" text-base md:text-lg font-bold">
-                          Category
-                        </h1>
-                      </div>
+                  <div
+                    key={index}
+                    className={`overflow-hidden rounded-lg relative bg-blue-100 ${pattern[index]}`}
+                  >
+                    <img
+                      src={image}
+                      alt={`image galery ${index}`}
+                      className="w-full h-full hover:scale-[1.01] object-cover transition-all duration-300"
+                    />
+                    <div className="absolute bottom-1 left-0 px-3 text-white ">
+                      <span className="text-sm">Feature</span>
+                      <h1 className=" text-base md:text-lg font-bold">
+                        Category
+                      </h1>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>
