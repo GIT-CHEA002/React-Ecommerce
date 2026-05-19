@@ -3,12 +3,16 @@ import { Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 import CheckOutPage from "./CheckOutPage";
 import ProductPage from "./pages/ProductPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/product" element={<ProductPage />} />
+      <Route path="/product">
+        <Route index element={<ProductPage />} />
+        <Route path=":id" element={<ProductDetailPage />} />
+      </Route>
       <Route path="/checkout" element={<CheckOutPage />}></Route>
     </Routes>
   );
