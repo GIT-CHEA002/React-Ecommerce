@@ -1,12 +1,17 @@
-import Footer from "./Footer";
-import Header from "./Header";
+import { Fragment } from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import SearchForm from "../components/SearchForm";
 
 export default function HomePagePageLayout({ children }) {
   return (
-    <>
+    <Fragment>
       <Header />
       <main className="pt-26">{children}</main>
-      <Footer />
-    </>
+      <div className="">
+        <SearchForm />
+        <Footer />
+      </div>
+    </Fragment>
   );
 }
