@@ -6,7 +6,6 @@ import { Fragment } from "react";
 export default function HomePage({ products }) {
   return (
     <Fragment>
-      <title>Home</title>
       <HomePagePageLayout>
         <HeroSection />
         <RandomProductImage products={products} />

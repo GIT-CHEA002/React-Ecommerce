@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import LeadingTitle from "../../components/LeadingTitle";
-import ProductPageLayout from "../../layouts/ProductPageLayout";
 import axios from "axios";
 import { ArrowRight, BadgeCheck, Minus, Plus, Truck } from "lucide-react";
+import CheckoutPageLayout from "../../layouts/CheckoutPageLayout";
 
 export default function CheckOutPage() {
   const [carts, setCarts] = useState([]);
@@ -33,11 +33,11 @@ export default function CheckOutPage() {
       0,
     ) || 0) / 4;
   return (
-    <ProductPageLayout>
+    <CheckoutPageLayout>
       <section className="mt-5">
         <LeadingTitle title={"Shopping Cart"} />
         <p className="text-gray-600 pt-2">You have product in carts</p>
-        <div className=" block md:flex space-y-4 md:space-y-0  md:space-x-8">
+        <div className="block md:flex sm:space-y-4 md:space-y-0  md:space-x-8">
           <div className=" w-full md:w-[70%] block space-y-5 ">
             {carts.map((cart) =>
               cart.products.map((product) => {
@@ -54,7 +54,7 @@ export default function CheckOutPage() {
                           className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-200"
                         />
                       </div>
-                      <div className="flex-1 text-end min-w-0 px-4 md:px-5">
+                      <div className="flex-1 min-w-0 px-4 md:px-5">
                         <h1 className="text-sm md:text-lg font-semibold text-blue-900 leading-normal truncate sm:whitespace-normal">
                           {product.title}
                         </h1>
@@ -166,6 +166,6 @@ export default function CheckOutPage() {
           </div>
         </div>
       </section>
-    </ProductPageLayout>
+    </CheckoutPageLayout>
   );
 }

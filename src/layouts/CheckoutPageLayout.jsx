@@ -1,19 +1,19 @@
 import { Fragment } from "react";
-import Footer from "../components/Footer";
 import Header from "../components/header/Header";
+import Footer from "../components/Footer";
 import { Helmet } from "react-helmet-async";
-
-export default function ProductPageLayout({ children }) {
+export default function CheckoutPageLayout({ children }) {
   return (
     <Fragment>
       <Helmet>
-        <title>Product</title>
+        <title>Checkout</title>
         <link
           rel="icon"
           type="image/svg+xml,png"
-          href="/icons/productpage.png"
+          href="/icons/checkoutpage.png"
         />
       </Helmet>
+
       <Header />
       <main className="px-6 md:px-8 lg:px-12  pt-20">{children}</main>
       <Footer />

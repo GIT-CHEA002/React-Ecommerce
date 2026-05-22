@@ -21,7 +21,7 @@ export default function LoginForm() {
     try {
       const user = await loginUser(formData);
       console.log(user);
-      navigator("/checkout");
+      navigator("/");
     } catch (error) {
       console.log(error);
     }
