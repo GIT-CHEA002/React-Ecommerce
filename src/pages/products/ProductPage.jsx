@@ -1,9 +1,9 @@
 import { BiHeart } from "react-icons/bi";
-import ProductPageLayout from "../layouts/ProductPageLayout";
 import { ChevronRight, List } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router";
+import ProductPageLayout from "../../layouts/ProductPageLayout";
 
 export default function ProductPage({ products }) {
   const [sideBarOpen, setSideBarOpen] = useState(false);

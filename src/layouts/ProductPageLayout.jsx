@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-function ProductPageLayout({ children }) {
+export default function ProductPageLayout({ children }) {
   return (
     <Fragment>
       <Header />
@@ -11,4 +11,3 @@ function ProductPageLayout({ children }) {
     </Fragment>
   );
 }
-export default ProductPageLayout;

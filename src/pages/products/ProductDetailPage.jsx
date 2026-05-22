@@ -1,4 +1,4 @@
-import ProductPageLayout from "../layouts/ProductPageLayout";
+import ProductPageLayout from "../../layouts/ProductPageLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import { Plus, Star } from "lucide-react";
@@ -6,7 +6,7 @@ import { Minus } from "lucide-react";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 import { Leaf } from "lucide-react";
 import { Timer } from "lucide-react";
-import LeadingTitle from "../components/LeadingTitle";
+import LeadingTitle from "../../components/LeadingTitle";
 import { IoStarHalfOutline } from "react-icons/io5";
 import axios from "axios";
 export default function ProductDetailPage() {

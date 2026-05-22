@@ -1,15 +1,15 @@
 import { Route } from "react-router";
 import { Routes } from "react-router";
-import HomePage from "./pages/HomePage";
-import CheckOutPage from "./pages/CheckOutPage";
-import ProductPage from "./pages/ProductPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
+import HomePage from "./pages/home/HomePage";
+import CheckOutPage from "./pages/checkout/CheckOutPage";
+import ProductDetailPage from "./pages/products/ProductDetailPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LoginForm from "./pages/auth/loginForm";
 import RegisterForm from "./pages/auth/RegisterForm";
 import AuthLayout from "./layouts/AuthLayout";
 import ScrollToTop from "./hooks/ScrollToTop";
+import ProductPage from "./pages/products/ProductPage";
 
 function App() {
   const [products, setProduct] = useState([]);
@@ -41,12 +41,4 @@ function App() {
     </Routes>
   );
 }
-// routes :
-/**
- * 1. / = homepae
- * 2. /products = view all products
- * 3. /checkout = checkout page
- * 4. /orders = order page
- */
-
 export default App;

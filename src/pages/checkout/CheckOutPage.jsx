@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import LeadingTitle from "../components/LeadingTitle";
-import ProductPageLayout from "../layouts/ProductPageLayout";
+import LeadingTitle from "../../components/LeadingTitle";
+import ProductPageLayout from "../../layouts/ProductPageLayout";
 import axios from "axios";
 import { ArrowRight, BadgeCheck, Minus, Plus, Truck } from "lucide-react";
 
