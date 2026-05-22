@@ -2,7 +2,7 @@ import { List } from "lucide-react";
 import { useEffect, useState } from "react";
 import ProductPageLayout from "../../layouts/ProductPageLayout";
 import { useRef } from "react";
-import SideBar from "./Sidebar";
+import SideBar from "./SideBar";
 import ProductGrid from "./ProductGrid";
 export default function ProductPage({ products }) {
   // share state
