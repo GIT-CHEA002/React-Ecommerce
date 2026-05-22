@@ -1,9 +1,14 @@
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 import LeadingTitle from "../../components/LeadingTitle";
 import { useNavigate } from "react-router";
+// import { useState } from "react";
 
 export default function FeatureProduct({ products }) {
   const navigator = useNavigate();
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const totalPages = Math.ceil(productToDisplay.length / 6);
+  // const minIndex = (currentPage - 1) * 6;
+  // const maxIndex = currentPage * 6;
   return (
     <div className=" mt-10 px-6 md:px-8 lg:px-12 space-y-5">
       <div className="flex justify-between items-center">
