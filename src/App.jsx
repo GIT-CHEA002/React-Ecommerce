@@ -10,7 +10,6 @@ import RegisterForm from "./pages/auth/RegisterForm";
 import AuthLayout from "./layouts/AuthLayout";
 import ScrollToTop from "./hooks/ScrollToTop";
 import ProductPage from "./pages/products/ProductPage";
-
 function App() {
   const [products, setProduct] = useState([]);
   useEffect(() => {
