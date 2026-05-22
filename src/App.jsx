@@ -1,9 +1,9 @@
 import { Route } from "react-router";
 import { Routes } from "react-router";
+import { useEffect, useState } from "react";
 import HomePage from "./pages/home/HomePage";
 import CheckOutPage from "./pages/checkout/CheckOutPage";
-import ProductDetailPage from "./pages/products/ProductDetailPage";
-import { useEffect, useState } from "react";
+import ProductDetailPage from "./pages/products/productdetails/ProductDetailPage";
 import axios from "axios";
 import LoginForm from "./pages/auth/loginForm";
 import RegisterForm from "./pages/auth/RegisterForm";

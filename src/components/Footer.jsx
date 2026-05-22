@@ -2,7 +2,6 @@ import { BiMailSend } from "react-icons/bi";
 export default function Footer() {
   return (
     <footer className=" bg-white z-50 px-6 md:px-8 lg:px-12 pt-6 pb-12 ">
-      {/* navigation links */}
       <section className="border-t">
         <div className=" block  md:flex pt-2 pb-4">
           <div className=" w-fit md:w-[300px] text-center md:text-start space-y-2">

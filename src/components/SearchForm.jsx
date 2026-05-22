@@ -1,5 +1,4 @@
 import Button from "./shared/Button";
-
 export default function SearchForm() {
   return (
     <section className="md:px-32 lg:px-64 text-gray-600  py-16">
