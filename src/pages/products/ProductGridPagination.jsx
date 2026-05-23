@@ -4,9 +4,8 @@ import { Fragment } from "react";
 export default function ProductGridPagination({
   setCurrentPage,
   currentPage,
-  productToDisplay,
+  totalPages,
 }) {
-  const totalPages = Math.ceil(productToDisplay.length / 6);
   return (
     <Fragment>
       {totalPages >= 1 && (

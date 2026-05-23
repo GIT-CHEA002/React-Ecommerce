@@ -1,4 +1,3 @@
-
 import ProductGridPagination from "./ProductGridPagination";
 import ProductGridItem from "./ProductGridItem";
 import ProductGridHeader from "./ProductGridHeader";
@@ -9,6 +8,9 @@ export default function ProductGrid({
   setCurrentPage,
   currentPage,
 }) {
+  const totalPages = Math.ceil(productToDisplay.length / 6);
+  const minIndex = (currentPage - 1) * 6;
+  const maxIndex = currentPage * 6;
   return (
     <div
       ref={scrollContainerRef}
@@ -16,9 +18,13 @@ export default function ProductGrid({
     >
       {/* header top sort option  */}
       <ProductGridHeader />
-      <ProductGridItem productToDisplay={productToDisplay} />
-      <ProductGridPagination
+      <ProductGridItem
         productToDisplay={productToDisplay}
+        minIndex={minIndex}
+        maxIndex={maxIndex}
+      />
+      <ProductGridPagination
+        totalPages={totalPages}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />

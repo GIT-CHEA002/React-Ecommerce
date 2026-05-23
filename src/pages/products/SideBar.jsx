@@ -6,7 +6,7 @@ export default function SideBar({
   getSelectedCategory,
 }) {
   const sidebarLinkClass = (isActive) => {
-    return `flex justify-between p-2 rounded-lg text-blue-900 hover:bg-blue-300 active:font-semibold transition-all duration-300 
+    return `flex justify-between p-2 rounded-lg text-blue-900 hover:bg-blue-300 active:font-semibold transition-all duration-300 cursor-pointer
                             ${isActive ? "bg-blue-200" : ""}`;
   };
   return (
