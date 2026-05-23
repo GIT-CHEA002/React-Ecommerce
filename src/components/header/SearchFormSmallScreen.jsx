@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { FaX } from "react-icons/fa6";
+import { SearchContext } from "../../hooks/SearchContext";
+import { handleSearch } from "../../utils/handleSearch";
 export default function SearchFormSmallScreen({
   isSearchFormOpen,
   setisSearchFormOpen,
 }) {
+  const { setSearchTerm, searchResults, setSearchResults } = useContext(SearchContext);
   return (
     <div>
       {isSearchFormOpen && (
@@ -10,6 +14,14 @@ export default function SearchFormSmallScreen({
           <form className="flex gap-2 items-center">
             <input
               type="text"
+              onChange={(event) => {
+                handleSearch(
+                  event.target.value,
+                  setSearchTerm,
+                  setSearchResults,
+                );
+                console.log("Search results:", searchResults);
+              }}
               placeholder="search products..."
               className="flex-1 border-2 rounded px-3 py-2 text-sm bg-gray-100 border-gray-300 outline-none focus:border-blue-600 transition-colors duration-300"
             />

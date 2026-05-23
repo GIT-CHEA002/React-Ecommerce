@@ -1,9 +1,10 @@
 import { List } from "lucide-react";
 import { useEffect, useState } from "react";
-import ProductPageLayout from "../../layouts/ProductPageLayout";
+import ProductPageLayout from "../../../layouts/ProductPageLayout";
 import { useRef } from "react";
 import SideBar from "./SideBar";
 import ProductGrid from "./ProductGrid";
+import Loading from "../../../components/shared/Loading";
 export default function ProductPage({ products }) {
   // share state
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -56,12 +57,20 @@ export default function ProductPage({ products }) {
             getSelectedCategory={getSelectedCategory}
           />
           {/* scroll able right side */}
-          <ProductGrid
-            scrollContainerRef={scrollContainerRef}
-            productToDisplay={productToDisplay}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          {!products || products.length === 0 ? (
+            <div>
+              <h1>Loading...</h1>
+            </div>
+          ) : productToDisplay && productToDisplay.length > 0 ? (
+            <ProductGrid
+              scrollContainerRef={scrollContainerRef}
+              productToDisplay={productToDisplay}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : (
+            <Loading />
+          )}
         </div>
       </ProductPageLayout>
     </>

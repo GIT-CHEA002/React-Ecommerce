@@ -2,8 +2,11 @@ import { LogOut } from "lucide-react";
 import logoutUser from "../../services/auth/logoutUser";
 import { NavLink, useNavigate } from "react-router";
 import { BiCart, BiSearch } from "react-icons/bi";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { handleSearch } from "../../utils/handleSearch";
+import { SearchContext } from "../../hooks/SearchContext";
+import { getTotalCartNumber } from "../../services/cart/CartService";
+import useCart from "../../hooks/CartContext";
 
 export default function NavigationLink({
   isSearchFormOpen,
@@ -11,28 +14,16 @@ export default function NavigationLink({
 }) {
   const headerLinkClass = ({ isActive }) =>
     `text-gray-600/90 hover:text-gray-600 ${isActive ? "underline decoration-blue-900 underline-offset-2 " : "underline-none"}`;
-
-  const navigate = useNavigate();
-  const [carts, setCarts] = useState([]);
-
-  // get user with local storage
+  const navigator = useNavigate();
+  const { setSearchTerm, searchResults, setSearchResults } =
+    useContext(SearchContext);
+  const { totalCart, setTotalCart } = useCart();
   const user = JSON.parse(localStorage.getItem("user_session"));
   useEffect(() => {
-    const getCart = async () => {
-      try {
-        if (user) {
-          const url = `https://dummyjson.com/carts/user/${user.id}`;
-          const respone = await axios.get(url);
-          setCarts(respone.data.carts);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCart();
-  }, [user]);
-
-  const totalCart = carts[0]?.products.length;
+    if (user) {
+      setTotalCart(getTotalCartNumber(user));
+    }
+  }, [user, setTotalCart]);
   return (
     <div className="flex">
       <div className="">
@@ -56,6 +47,14 @@ export default function NavigationLink({
               type="text"
               name="search"
               id="search"
+              onChange={(event) => {
+                handleSearch(
+                  event.target.value,
+                  setSearchTerm,
+                  setSearchResults,
+                );
+                console.log("Search results:", searchResults);
+              }}
               className="h-full  border-2  rounded px-4 py-1 items-center bg-gray-100 border-gray-500 text-gray-700 tracking-wide outline-none focus:border-blue-900 transition-colors duration-300 "
               placeholder="seach products..."
             />
@@ -71,12 +70,12 @@ export default function NavigationLink({
           <div
             onClick={() => {
               if (user) {
-                navigate("/checkout");
+                navigator("/checkout");
               } else {
-                navigate("/auth/register");
+                navigator("/auth/register");
               }
             }}
-            className="flex items-center ms-3 px-3 space-x-2 rounded-sm cursor-pointer bg-gray-100 border-2 hover:border-blue-900 transition-all duration-300"
+            className="flex items-center ms-3 px-3 space-x-2 rounded-sm cursor-pointer bg-gray-100 border-2 hover:border-blue-900 hover:bg-blue-100 transition-all duration-300"
           >
             <BiCart className="text-gray-600 text-lg" />
             <span className="text-sm">{totalCart || 0}</span>
@@ -86,7 +85,7 @@ export default function NavigationLink({
               onClick={() => {
                 if (window.confirm("Are you sure you want to log out?")) {
                   logoutUser();
-                  navigate("/");
+                  navigator("/");
                 }
               }}
               className="flex items-center ms-3 gap-2 px-4 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-all duration-200 cursor-pointer text-sm font-medium shadow-sm w-fit"

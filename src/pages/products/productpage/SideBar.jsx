@@ -1,5 +1,4 @@
 import { ChevronRight } from "lucide-react";
-
 export default function SideBar({
   sideBarOpen,
   selectedCategory,

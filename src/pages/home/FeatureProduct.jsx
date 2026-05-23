@@ -1,14 +1,27 @@
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 import LeadingTitle from "../../components/LeadingTitle";
 import { useNavigate } from "react-router";
-// import { useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import Pagination from "../../components/shared/Pagination";
 export default function FeatureProduct({ products }) {
+  // show random 16 product only
+  const containerRef = useRef(null);
+  const shuffled = [...products].sort(() => 0.5 - Math.random());
+  const featureProduct = shuffled.slice(0, 16);
   const navigator = useNavigate();
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const totalPages = Math.ceil(productToDisplay.length / 6);
-  // const minIndex = (currentPage - 1) * 6;
-  // const maxIndex = currentPage * 6;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(featureProduct.length / 8);
+  const minIndex = (currentPage - 1) * 8;
+  const maxIndex = currentPage * 8;
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [currentPage]);
   return (
     <div className=" mt-10 px-6 md:px-8 lg:px-12 space-y-5">
       <div className="flex justify-between items-center">
@@ -23,9 +36,13 @@ export default function FeatureProduct({ products }) {
           View all
         </button>
       </div>
-      <div className=" flex overflow-x-auto snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 ">
+      <div
+        ref={containerRef}
+        className=" flex overflow-x-auto snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 "
+      >
         {products &&
-          products.map((product) => {
+          products.map((product, index) => {
+            if (index < minIndex || index >= maxIndex) return null;
             return (
               <div
                 onClick={() => {
@@ -35,7 +52,7 @@ export default function FeatureProduct({ products }) {
                     },
                   });
                 }}
-                key={product.id}
+                key={index}
                 className="h-[370px] relative min-w-[250px] snap-start flex-shrink-0 group bg-blue-50 rounded-lg overflow-hidden cursor-pointer shadow-lg shadow-blue-50"
               >
                 {/* image */}
@@ -75,6 +92,13 @@ export default function FeatureProduct({ products }) {
               </div>
             );
           })}
+      </div>
+      <div className="flex justify-center mt-3">
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );

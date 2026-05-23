@@ -3,13 +3,15 @@ import { Routes } from "react-router";
 import { useEffect, useState } from "react";
 import HomePage from "./pages/home/HomePage";
 import CheckOutPage from "./pages/checkout/CheckOutPage";
-import ProductDetailPage from "./pages/products/productdetails/ProductDetailPage";
+import ProductDetailPage from "./pages/products/productdetailpage/ProductDetailPage";
 import axios from "axios";
 import LoginForm from "./pages/auth/loginForm";
 import RegisterForm from "./pages/auth/RegisterForm";
 import AuthLayout from "./layouts/AuthLayout";
 import ScrollToTop from "./hooks/ScrollToTop";
-import ProductPage from "./pages/products/ProductPage";
+import ProductPage from "./pages/products/productpage/ProductPage";
+import { SearchProvider } from "./hooks/SearchContext";
+import { CartProvider } from "./hooks/CartContext";
 function App() {
   const [products, setProduct] = useState([]);
   useEffect(() => {
@@ -26,18 +28,22 @@ function App() {
   }, []);
   ScrollToTop();
   return (
-    <Routes>
-      <Route path="/" element={<HomePage products={products} />} />
-      <Route path="/product">
-        <Route index element={<ProductPage products={products} />} />
-        <Route path=":id" element={<ProductDetailPage />} />
-      </Route>
-      <Route path="/checkout" element={<CheckOutPage />} />
-      <Route path="/auth" element={<AuthLayout />}>
-        <Route path="login" element={<LoginForm />} />
-        <Route path="register" element={<RegisterForm />} />
-      </Route>
-    </Routes>
+    <SearchProvider>
+      <CartProvider>
+        <Routes>
+          <Route path="/" element={<HomePage products={products} />} />
+          <Route path="/product">
+            <Route index element={<ProductPage products={products} />} />
+            <Route path=":id" element={<ProductDetailPage />} />
+          </Route>
+          <Route path="/checkout" element={<CheckOutPage />} />
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="login" element={<LoginForm />} />
+            <Route path="register" element={<RegisterForm />} />
+          </Route>
+        </Routes>
+      </CartProvider>
+    </SearchProvider>
   );
 }
 export default App;

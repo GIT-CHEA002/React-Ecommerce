@@ -14,7 +14,7 @@ export default function ProductGrid({
   return (
     <div
       ref={scrollContainerRef}
-      className="flex-1 relative h-screen  z-20 md:ps-12 mt-12 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
+      className="flex-1 relative h-screen z-20 md:ps-12 mt-12 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth"
     >
       {/* header top sort option  */}
       <ProductGridHeader />
