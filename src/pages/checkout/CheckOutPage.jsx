@@ -1,28 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LeadingTitle from "../../components/LeadingTitle";
-import axios from "axios";
 import CheckoutPageLayout from "../../layouts/CheckoutPageLayout";
 import OrderSummary from "./OrderSummary";
 import CartProduct from "./CartProduct";
+import useCart from "../../hooks/CartContext";
+import { getAllCart } from "../../services/cart/CartService";
 
 export default function CheckOutPage() {
-  const [carts, setCarts] = useState([]);
+  const { carts, setCarts } = useCart();
+  const user = JSON.parse(localStorage.getItem("user_session"));
   useEffect(() => {
     const getCart = async () => {
-      const user = JSON.parse(localStorage.getItem("user_session"));
       try {
         if (user) {
-          const url = `https://dummyjson.com/carts/user/${user.id}`;
-          const respone = await axios.get(url);
-          setCarts(respone.data.carts);
+          const data = await getAllCart(user);
+          console.log(data);
+          setCarts(data);
         }
       } catch (error) {
         console.log(error);
       }
     };
     getCart();
-  }, []);
+  }, [user, setCarts]);
 
+  console.log(carts);
   return (
     <CheckoutPageLayout>
       <section className="mt-5">

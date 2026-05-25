@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();
 export function CartProvider({ children }) {
-  const [carts, setCarts] = useState(null);
+  const [carts, setCarts] = useState({});
   const [totalCart, setTotalCart] = useState(0);
 
   return React.createElement(

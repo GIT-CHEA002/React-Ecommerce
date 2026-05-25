@@ -5,13 +5,11 @@ export const getAllCart = async (user) => {
     if (user) {
       const url = `https://dummyjson.com/carts/user/${user.id}`;
       const response = await axios.get(url);
-      console.log(response.data.carts[0]);
-      return response.data.carts[0];
+      return response.data.carts;
     }
   } catch (error) {
     console.log(error);
   }
-  return 0;
 };
 export const getTotalCartNumber = async (user) => {
   try {
