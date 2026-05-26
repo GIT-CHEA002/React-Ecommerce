@@ -4,11 +4,13 @@ import RandomProductImage from "./RandomProductImage";
 import FeatureProduct from "./FeatureProduct";
 import { Fragment } from "react";
 import Loading from "../../components/shared/Loading";
+import SearchResultDropDown from "../../components/SearchResultDropDown";
 export default function HomePage({ products }) {
   return (
     <Fragment>
       <HomePagePageLayout>
         <HeroSection />
+        <SearchResultDropDown />
         {products && products.length > 0 ? (
           <>
             <RandomProductImage products={products} />

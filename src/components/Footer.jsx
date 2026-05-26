@@ -3,10 +3,10 @@ export default function Footer() {
   return (
     <footer className=" bg-white z-50 px-6 md:px-8 lg:px-12 pt-6 pb-12 ">
       <section className="border-t">
-        <div className=" block  md:flex pt-2 pb-4">
-          <div className=" w-fit md:w-[300px] text-center md:text-start space-y-2">
+        <div className=" flex flex-col md:flex-row pt-2 pb-4">
+          <div className=" md:w-[300px] text-center w-full md:text-start space-y-2">
             <h1 className="text-blue-900 text-lg font-semibold">Lumina Shop</h1>
-            <p className="text-base text-wrap text-gray-600">
+            <p className="text-base text-wrap text-gray-600 mb-3">
               Create a serence shopping experiences with quality products that
               inspire
             </p>

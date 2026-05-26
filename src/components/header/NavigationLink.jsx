@@ -2,10 +2,10 @@ import { LogOut } from "lucide-react";
 import logoutUser from "../../services/auth/logoutUser";
 import { NavLink, useNavigate } from "react-router";
 import { BiCart, BiSearch } from "react-icons/bi";
-import { useContext, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { handleSearch } from "../../utils/handleSearch";
-import { SearchContext } from "../../hooks/SearchContext";
-import { getTotalCartNumber } from "../../services/cart/CartService";
+import { useSearch } from "../../hooks/SearchContext";
+import { getTotalCartNumber } from "../../services/CartService";
 import useCart from "../../hooks/CartContext";
 
 export default function NavigationLink({
@@ -15,10 +15,11 @@ export default function NavigationLink({
   const headerLinkClass = ({ isActive }) =>
     `text-gray-600/90 hover:text-gray-600 ${isActive ? "underline decoration-blue-900 underline-offset-2 " : "underline-none"}`;
   const navigator = useNavigate();
-  const { setSearchTerm, searchResults, setSearchResults } =
-    useContext(SearchContext);
+  const { setSearchTerm, searchResults, setSearchResults } = useSearch();
   const { totalCart, setTotalCart } = useCart();
-  const user = JSON.parse(localStorage.getItem("user_session"));
+  const user = useMemo(() => {
+    return JSON.parse(localStorage.getItem("user_session"));
+  }, []);
   useEffect(() => {
     if (user) {
       setTotalCart(getTotalCartNumber(user));
@@ -37,7 +38,6 @@ export default function NavigationLink({
             Home
           </NavLink>
           <NavLink to="/product" className={headerLinkClass}>
-            {" "}
             Products
           </NavLink>
         </ul>

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import HomePage from "./pages/home/HomePage";
 import CheckOutPage from "./pages/checkout/CheckOutPage";
 import ProductDetailPage from "./pages/products/productdetailpage/ProductDetailPage";
-import axios from "axios";
 import LoginForm from "./pages/auth/loginForm";
 import RegisterForm from "./pages/auth/RegisterForm";
 import AuthLayout from "./layouts/AuthLayout";
@@ -12,19 +11,15 @@ import ScrollToTop from "./hooks/ScrollToTop";
 import ProductPage from "./pages/products/productpage/ProductPage";
 import { SearchProvider } from "./hooks/SearchContext";
 import { CartProvider } from "./hooks/CartContext";
+import { getProducts } from "./services/ProductService";
 function App() {
   const [products, setProduct] = useState([]);
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const url = "https://dummyjson.com/products";
-        const respone = await axios.get(url);
-        setProduct(respone.data.products);
-      } catch (error) {
-        console.log(error);
-      }
+    const fetchProducts = async () => {
+      const data = await getProducts();
+      setProduct(data);
     };
-    getProduct();
+    fetchProducts();
   }, []);
   ScrollToTop();
   return (

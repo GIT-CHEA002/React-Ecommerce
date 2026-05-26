@@ -1,12 +1,10 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const SearchContext = createContext();
 
 export function SearchProvider({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-
   return React.createElement(
     SearchContext.Provider,
     {
@@ -20,3 +18,6 @@ export function SearchProvider({ children }) {
     children,
   );
 }
+export const useSearch = () => {
+  return useContext(SearchContext);
+};

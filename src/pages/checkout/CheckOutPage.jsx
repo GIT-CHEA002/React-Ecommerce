@@ -4,7 +4,7 @@ import CheckoutPageLayout from "../../layouts/CheckoutPageLayout";
 import OrderSummary from "./OrderSummary";
 import CartProduct from "./CartProduct";
 import useCart from "../../hooks/CartContext";
-import { getAllCart } from "../../services/cart/CartService";
+import { getAllCart } from "../../services/CartService";
 
 export default function CheckOutPage() {
   const { carts, setCarts } = useCart();
